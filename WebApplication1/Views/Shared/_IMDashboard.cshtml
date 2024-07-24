@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1st Topnotch BOARDING </title>
+    <link rel="stylesheet" href="/css/dashboard.css" />
+    <link rel="stylesheet" href="/css/checking.css" />
+    <link rel="stylesheet" href="/css/addemployee.css" />
+    <link rel="stylesheet" href="/css/modal/editmodal.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class="sidebar">
+        <a href="/User/imdashboard" class="button-link">
+            <img src="~/img/topnotch1.png" alt="Logo" class="button-image">
+        </a>
+        <h2>Welcome, @ViewBag.Username</h2>
+        <div class="menu-content">
+            <ul class="menu-items">
+                <li class="item2">
+                    <a href="#"><i class="fas fa-user fa-lg">SITE</i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/User/IMAddSite">Add Sites</a></li>
+                        <li><a href="/User/IMViewSite">View Sites</a></li>
+                    </ul>
+                </li>
+                <li class="item2">
+                    <a href="#"><i class="fas fa-user fa-lg">To Do</i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/User/IM">For Approval</a></li>
+                        <li><a href="/User/imdeny">For Checking</a></li>
+                    </ul>
+                </li>
+                <a href="/User/ApprovedIM">List of Hires</a>
+                <li class="item3">
+                    <a href="#" onclick="confirmLogout()"><i class="fas fa-user fa-lg">LOGOUT</i></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main class="main">
+        @RenderBody()
+    </main>
+    <script src="~/js/employeeModal.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        // JavaScript function to handle logout confirmation
+        function confirmLogout() {
+            // Display SweetAlert confirmation dialog
+            Swal.fire({
+                title: 'Logout',
+                text: "Are you sure you want to logout?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#65B741',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Redirect to the logout page or perform logout action
+                    window.location.href = "/User/Logout"; // Change the URL as per your logout action
+                }
+            });
+        }
+    </script>
+</body>
+</html>

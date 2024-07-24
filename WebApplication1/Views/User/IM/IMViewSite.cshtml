@@ -1,0 +1,44 @@
+﻿@{
+    Layout = "_IMDashboard";
+}
+
+<h1>View Sites</h1>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Site Name</th>
+            <th>Client Name</th>
+            <th>OM Assigned</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var site in ViewBag.Sites)
+        {
+            <tr>
+                <td>@site.site_name</td>
+                <td>@site.client_name</td>
+                <td>@site.om</td>
+                <td>@site.status</td>
+                <td>
+                    <form action="/User/ToggleStatusIM" method="post" style="display:inline;">
+                        <input type="hidden" name="siteId" value="@site.site_id" />
+                        <button type="submit" class="btn btn-warning">
+                            @if (site.status == "Active")
+                            {
+                                <text>Deactivate</text>
+                            }
+                            else
+                            {
+                                <text>Activate</text>
+                            }
+                        </button>
+                    </form>
+                    <a href="/User/GetEmployeeIM?siteId=@site.site_id" class="btn btn-primary">View</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

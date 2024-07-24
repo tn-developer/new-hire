@@ -1,0 +1,98 @@
+﻿@model List<EmployeeViewModel>
+
+@{
+    Layout = "_IMDashboard"; 
+}
+
+<h1>Employee Details for Site: @Model.FirstOrDefault()?.site_name</h1>
+
+@if (Model.Count == 0)
+{
+    <p>No employees found for this site.</p>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Contact No.</th>
+                <th>Position</th>
+                <th>Rate</th>
+                <th>Date Hired</th>
+                <th>Status</th>
+                <th>Action</th> 
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in Model)
+            {
+                <tr>
+                    <td>@employee.name</td>
+                    <td>@employee.address</td>
+                    <td>@employee.contact_no</td>
+                    <td>@employee.position</td>
+                    <td>@employee.rate</td>
+                    <td>@employee.date_hired.ToString("yyyy-MM-dd")</td>
+                    <td>@employee.status</td>
+                    <td>
+                        <button type="button" class="btn btn-primary edit-employee" data-employee-id="@employee.employeeId" data-position="@employee.position" data-rate="@employee.rate">Edit</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<!-- Back Button -->
+<a href="@Url.Action("IMViewSite", "User")" class="btn btn-secondary">Back to Site List</a>
+
+<!-- Edit Employee Modal -->
+<div class="modal fade" id="editEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="editEmployeeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editEmployeeModalLabel">Edit Employee</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editEmployeeForm" method="post" action="/User/EditEmployeeIM">
+                    <input type="hidden" id="editEmployeeId" name="employeeId" />
+                    <div class="form-group">
+                        <label for="editEmployeePosition">Position</label>
+                        <input type="text" class="form-control" id="editEmployeePosition" name="position" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="editEmployeeRate">Rate</label>
+                        <input type="number" class="form-control" id="editEmployeeRate" name="rate" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.edit-employee').click(function () {
+            var employeeId = $(this).data('employee-id');
+            var position = $(this).data('position');
+            var rate = $(this).data('rate');
+
+            $('#editEmployeeId').val(employeeId);
+            $('#editEmployeePosition').val(position);
+            $('#editEmployeeRate').val(rate);
+
+            $('#editEmployeeModal').modal('show');
+        });
+    });
+</script>

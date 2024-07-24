@@ -1,0 +1,243 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+.container {
+    max-width: 1440px;
+    width: 90%;
+    background: #fff;
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.8);
+    margin: 20px;
+    border-radius: 10px;
+}
+
+    .container h2 {
+        padding: 1rem 1rem;
+        font-size: 2.0rem;
+        text-align: center;
+    }
+
+.container-input {
+    position: relative;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    margin: 10px;
+}
+
+.input {
+    width: 150px;
+    padding: 10px 40px 10px 10px; /* Increase right padding to accommodate the icon */
+    border-radius: 9999px;
+    border: solid 1px #333;
+    transition: all .2s ease-in-out;
+    outline: none;
+    opacity: 0.8;
+    box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+.container-input svg {
+    position: absolute;
+    top: 50%;
+    right: 58%; /* Adjusted right position */
+    transform: translateY(-50%);
+    fill: #a59595; /* Fill color for the icon */
+    cursor: pointer; /* Add cursor pointer */
+}
+
+
+.input:focus {
+    opacity: 1;
+    width: 250px;
+}
+
+.tb1 {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .tb1 thead {
+        background: #dea301;
+        color: #000;
+    }
+
+        .tb1 thead tr th {
+            font-size: 0.9rem;
+            padding: 0.8rem;
+            letter-spacing: 0.2rem;
+            vertical-align: top;
+            border: 1px solid #ffffff;
+        }
+
+    .tb1 tbody tr td {
+        font-size: 1rem;
+        letter-spacing: 0.2rem;
+        font-weight: normal;
+        text-align: center;
+        border: 1px solid #aab7b8;
+        padding: 0.8rem;
+    }
+
+    .tb1 tr:nth-child(even) {
+        background: #ccc;
+        transition: all 0.3s ease-in;
+        cursor: pointer;
+    }
+
+    .tb1 tr:hover td {
+        background: #839192;
+        color: #000;
+        transition: all 0.3s ease-in;
+        cursor: pointer;
+    }
+
+    .tb1 button {
+        font-family: inherit;
+        border: none;
+        outline: 1px dotted rgb(37, 37, 37);
+        outline-offset: -4px;
+        box-shadow: inset -1px -1px #292929, inset 1px 1px #fff, inset -2px -2px rgb(158, 158, 158), inset 2px 2px #ffffff;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        padding: 5px 20px;
+        font-weight: bold;
+    }
+
+        .tb1 button:active {
+            box-shadow: inset -1px -1px #fff, inset 1px 1px #292929, inset -2px -2px #ffffff, inset 2px 2px rgb(158, 158, 158);
+        }
+
+.btn_trash {
+    background: #e74c3c;
+    color: #fff;
+    font-weight: bold;
+}
+
+.btn_approved {
+    background: #1e8449;
+    color: #fff;
+    font-weight: bold;
+}
+
+@media(max-width: 768px) {
+    .tb1 thead {
+        display: none;
+    }
+
+    .tb1 tr,
+    .tb1 td {
+        display: block;
+        width: 100%;
+    }
+
+    .tb1 tr {
+        margin-bottom: 1rem;
+    }
+
+    .tb1 tbody tr td {
+        text-align: right;
+        position: relative;
+    }
+
+    .tb1 td::before {
+        content: attr(data-lable);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        text-align: left;
+        padding-left: 1.2rem;
+    }
+}
+/* modal */
+
+/* Styles for the modal */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Added box shadow */
+    max-width: 600px; /* Maximum width */
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Added box shadow */
+    max-width: 500px; /* Maximum width */
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.close {
+    color: #e70000;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+#reason {
+    width: calc(100% - 40px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+#submitBtn {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* Added box shadow */
+}
+
+    #submitBtn:hover {
+        background-color: #45a049;
+    }
+
+.btn_remarks {
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+    .btn_remarks:hover {
+        background-color: red;
+    }
+
+.btn_view:hover {
+    background-color: rgb(0, 245, 20);
+}
+
+.btn_employee:hover {
+    background-color: rgb(237, 31, 24);
+}
+
+.btn_view {
+    border-radius: 10px;
+}
+
+.btn_employee {
+    border-radius: 10px;
+}

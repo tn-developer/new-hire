@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="shortcut icon" href="css/images/title-logo.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="@Url.Content("~/css/login/login.css")">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="login-container">
+            <div class="login-picture">
+                <img src="css/images/title-logo.png" alt="">
+                <h1 class="tnc">TOP-NOTCH</h1>
+            </div>
+            <div class="login-header">
+                <h1>Login</h1>
+                <p class="please">Please login to your account.</p>
+
+            </div>
+            <div class="login-form">
+                <form id="login-form" action="/User/Login" method="post">
+                    <div class="login-input">
+                        <input type="text" id="username" name="username" placeholder="Username" required>
+                        <input type="password" id="password" name="password" placeholder="Password" required>
+                        <br />
+                        @if (ViewData.ModelState.ContainsKey("Invalid"))
+                        {
+                            <div class="invalid" id="errorMessage">
+                                <p class="invalid-message">Invalid username or password</p>
+                            </div>
+                        }
+                        else if (ViewData.ModelState.ContainsKey("Username"))
+                        {
+                            <div class="denied" id="errorMessage2">
+                                <p class="invalid-message">Your account has not yet been approved.</p>
+                            </div>
+                        }
+                    </div>
+                    <div class="login-btn">
+                        <input type="submit" value="Login">
+                    </div>
+                    <hr class="line">
+                    <div class="login-links">
+                        <p>Don't have an account yet? <a href="@Url.Action("Register", "User")">Register!</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="~/js/login.js"></script>
+    <script>
+        setTimeout(function () {
+            document.getElementById('errorMessage').style.display = 'none';
+        }, 4000);
+        setTimeout(function () {
+            document.getElementById('errorMessage2').style.display = 'none';
+        }, 5000);
+    </script>
+</body>
+</html>

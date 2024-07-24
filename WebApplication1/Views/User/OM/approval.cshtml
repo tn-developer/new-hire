@@ -1,0 +1,225 @@
+﻿@{
+    Layout = "_OMDashboard";
+}
+<body>
+    <div class="container">
+        <div class="tb1_container">
+            <h2>For Approval</h2>
+
+            <table class="tb1">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Contact No.</th>
+                        <th>Birthday</th>
+                        <th>Position</th>
+                        <th>Site Name</th>
+                        <th>Client Name</th>
+                        <th>Rate</th>
+                        <th>Date Hired</th>
+                        <th>Status</th>
+                        <th colspan="3">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var employee in Model)
+                    {
+                        <tr>
+                            <td>@employee.name</td>
+                            <td>@employee.address</td>
+                            <td>@employee.contact_no</td>
+                            <td>@employee.birthday.ToShortDateString()</td>
+                            <td>@employee.position</td>
+                            <td>@employee.site_name</td>
+                            <td>@employee.client_name</td>
+                            <td>@employee.rate</td>
+                            <td>@employee.date_hired.ToShortDateString()</td>
+                            <td>@employee.status</td>
+                            <td>
+                                <button type="button" class="btn btn-success" onclick="handleApproval('@employee.employeeId')">Approve</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger" onclick="handleDenial('@employee.employeeId')">Deny</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_@employee.employeeId">Edit</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    @foreach (var employee in Model)
+    {
+        <div class="modal" id="exampleModal_@employee.employeeId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h5 class="modal-title" id="exampleModalLabel">EDIT EMPLOYEE</h5>
+                        <form id="editEmployeeForm_@employee.employeeId" action="/User/SaveEmployeeom" method="post">
+                            <div class="form-group">
+                                <input type="hidden" name="employeeId" value="@employee.employeeId" />
+                                <label>Name:</label>
+                                <input type="text" name="newName" value="@employee.name" required />
+                                <label>Position:</label>
+                                <input type="text" name="position" value="@employee.position" required />
+                                <label>Address:</label>
+                                <input type="text" name="address" value="@employee.address" required />
+                                <label>Rate:</label>
+                                <input type="text" name="rate" value="@employee.rate" required />
+                                <label>Site:</label>
+                                <select name="site">
+                                    @foreach (var siteAndClientNames in ViewBag.SiteAndClientNames)
+                                    {
+                                        <option value="@siteAndClientNames.Item2">@siteAndClientNames.Item2 - @siteAndClientNames.Item3</option>
+                                    }
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="submitForm('@employee.employeeId')">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+
+
+
+    <!-- JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.modal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget); // Button that triggered the modal
+                var recipient = button.data('whatever'); // Extract info from data-* attributes
+                // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+                // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+                var modal = $(this);
+                modal.find('.modal-title').text('Edit Employee');
+            });
+        });
+
+        function submitForm(employeeId) {
+            // Display SweetAlert confirmation dialog
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You are about to save changes for this employee. Proceed?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#65B741',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Save'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Get the form element by its ID
+                    var form = document.getElementById("editEmployeeForm_" + employeeId);
+                    // Submit the form
+                    form.submit();
+                }
+            });
+        }
+        function handleApproval(employeeId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'You are about to approve this employee. Proceed?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#65B741',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Create a hidden form
+                    const form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = '/User/ApprovalAction';
+
+                    // Add input fields for the action and employeeId
+                    const actionInput = document.createElement('input');
+                    actionInput.type = 'hidden';
+                    actionInput.name = 'action';
+                    actionInput.value = 'Approved';
+
+                    const employeeIdInput = document.createElement('input');
+                    employeeIdInput.type = 'hidden';
+                    employeeIdInput.name = 'employeeId';
+                    employeeIdInput.value = employeeId;
+
+                    // Append inputs to the form
+                    form.appendChild(actionInput);
+                    form.appendChild(employeeIdInput);
+
+                    // Append the form to the document body and submit it
+                    document.body.appendChild(form);
+                    form.submit();
+                }
+            });
+        }
+
+        // Function to handle denial action
+        function handleDenial(employeeId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'You are about to deny this employee. Proceed?',
+                icon: 'warning',
+                input: 'textarea',
+                inputLabel: 'Remarks',
+                inputPlaceholder: 'Enter your remarks here...',
+                showCancelButton: true,
+                confirmButtonColor: '#65B741',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed && result.value) {
+                    submitActionFormWithRemarks(employeeId, 'Denied', result.value);
+                } else if (result.isConfirmed) {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Remarks are required to deny an employee.',
+                        icon: 'error',
+                        confirmButtonColor: '#65B741'
+                    });
+                }
+            });
+        }
+
+        function submitActionFormWithRemarks(employeeId, action, remarks) {
+            var form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/User/ApprovalAction';
+
+            var actionInput = document.createElement('input');
+            actionInput.type = 'hidden';
+            actionInput.name = 'action';
+            actionInput.value = action;
+
+            var remarksInput = document.createElement('input');
+            remarksInput.type = 'hidden';
+            remarksInput.name = 'remarks';
+            remarksInput.value = remarks;
+
+            var employeeIdInput = document.createElement('input');
+            employeeIdInput.type = 'hidden';
+            employeeIdInput.name = 'employeeId';
+            employeeIdInput.value = employeeId;
+
+            form.appendChild(actionInput);
+            form.appendChild(remarksInput);
+            form.appendChild(employeeIdInput);
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+
+    </script>
+</body>

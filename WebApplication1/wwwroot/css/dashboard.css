@@ -1,0 +1,157 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    max-width: 250px; /* Adjust as needed */
+    background-color: #333;
+    color: #fff;
+    overflow-y: auto;
+    transition: 0.5s;
+}
+
+    .sidebar h2 {
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    .sidebar img {
+        display: block;
+        margin: 20px auto;
+        max-width: 80%;
+    }
+
+.menu-content {
+    padding: 0 20px;
+}
+
+.menu-items {
+    list-style-type: none;
+    padding: 0;
+}
+.menu-items.item1{
+    display:flex;
+}
+
+.menu-items .item {
+        margin-bottom: 10px;
+}
+
+.menu-items a {
+        display: block;
+        padding: 10px;
+        color: #fff;
+        text-decoration: none;
+}
+
+.menu-items a:hover {
+        background-color: #444;
+ }
+.modal-content{
+    position:center;
+}
+/* Main Content */
+.main {
+    margin-left: 250px;
+    padding: 20px;
+    transition: margin-left 0.5s;
+}
+
+.card-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card {
+    width: 200px;
+    height: 150px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card1 {
+    width: 200px;
+    height: 150px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px; /* Adjust as needed */
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.modal-title {
+    margin: 0;
+}
+
+.close {
+    cursor: pointer;
+}
+
+.modal-body {
+    margin-bottom: 20px;
+}
+
+.modal-content label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="number"],
+.modal-content input[type="date"] {
+    width: calc(100% - 12px);
+    padding: 6px;
+    margin-bottom: 10px;
+}
+
+.modal-content button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .modal-content button:hover {
+        background-color: #0056b3;
+    }

@@ -1,0 +1,146 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+.bn {
+    display: flex;
+    height: 3em;
+    width: 100px;
+    align-items: center;
+    justify-content: center;
+    background-color: #eeeeee4b;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    transition: all 0.2s linear;
+    cursor: pointer;
+    border: none;
+    background: #fff;
+}
+
+    .bn > svg {
+        margin-right: 5px;
+        margin-left: 5px;
+        font-size: 20px;
+        transition: all 0.10s ease-in;
+    }
+
+    .bn:hover > svg {
+        font-size: 1.2em;
+        transform: translateX(-5px);
+    }
+
+.container {
+    width: 90%;
+    max-width: 1440px;
+    background: rgb(255, 255, 255);
+    margin: 20px;
+    padding: 28px;
+    border-radius: 10px;
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.8);
+}
+
+    .container h2 {
+        padding: 1rem 1rem;
+        font-size: 2.0rem;
+        text-align: center;
+    }
+
+.input:focus {
+    opacity: 1;
+    width: 250px;
+}
+
+.tb1 {
+    width: 100%;
+    border-collapse: collapse;
+    
+}
+
+    .tb1 thead {
+        background: #dea301;
+        color: #000;
+        
+    }
+
+        .tb1 thead tr th {
+            font-size: 0.9rem;
+            padding: 0.8rem;
+            letter-spacing: 0.2rem;
+            vertical-align: top;
+            border: 1px solid #aab7b8;
+            
+        }
+
+    .tb1 tbody tr td {
+        font-size: 1rem;
+        letter-spacing: 0.2rem;
+        font-weight: normal;
+        text-align: center;
+        border: 1px solid #baab78;
+        padding: 0.8rem;
+       
+    }
+
+    .tb1 tr:nth-child(even) {
+        background: #ccc;
+        transition: all 0.3s ease-in;
+        cursor: pointer;
+    }
+
+    .tb1 tr:hover td {
+        background: #839192;
+        color: #000;
+        transition: all 0.3s ease-in;
+        cursor: pointer;
+    }
+
+    .tb1 button {
+        font-family: inherit;
+        border: none;
+        outline: 1px dotted rgb(37, 37, 37);
+        outline-offset: -4px;
+        box-shadow: inset -1px -1px #292929, inset 1px 1px #fff, inset -2px -2px rgb(158, 158, 158), inset 2px 2px #ffffff;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        padding: 5px 20px;
+        font-weight: bold;
+    }
+
+        .tb1 button:active {
+            box-shadow: inset -1px -1px #fff, inset 1px 1px #292929, inset -2px -2px #ffffff, inset 2px 2px rgb(158, 158, 158);
+        }
+
+.btn_denied {
+    background: #e74c3c;
+    color: #fff;
+    font-weight: bold;
+}
+
+@media(max-width: 768px) {
+    .tb1 thead {
+        display: none;
+    }
+
+    .tb1 tr,
+    .tb1 td {
+        display: block;
+        width: 100%;
+    }
+
+    .tb1 tr {
+        margin-bottom: 1rem;
+    }
+
+    .tb1 tbody tr td {
+        text-align: right;
+        position: relative;
+    }
+
+    .tb1 td::before {
+        content: attr(data-lable);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        text-align: left;
+        padding-left: 1.2rem;
+    }
+}
