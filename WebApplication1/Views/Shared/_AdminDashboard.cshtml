@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1st Topnotch BOARDING </title>
+    <link rel="stylesheet" href="/css/dashboard.css" />
+    <link rel="stylesheet" href="/css/edit_user.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class="sidebar">
+        <a href="/Admin/admindashboard" class="button-link">
+            <img src="~/img/topnotch1.png" alt="Logo" class="button-image">
+        </a>
+        <h2>Welcome @ViewBag.Username</h2>
+        <div class="menu-content">
+            <ul class="menu-items">
+                <li class="item1">
+                    <a href="/Admin/admin"><i class="fas fa-user fa-lg"></i>MANAGE USERS</a>
+                </li>
+                <li class="item1" disable>
+                    <a href="/Admin/adminapproved"><i class="fas fa-user fa-lg"></i>APPROVED USERS</a>
+                </li>
+                <li class="item2" disable>
+                    <a href="/Admin/admindenied"><i class="fas fa-user fa-lg">DENIED USERS</i></a>
+                </li>
+                <li class="item3">
+                    <a href="#" onclick="confirmLogout()"><i class="fas fa-user fa-lg">LOGOUT</i></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main class="main">
+        @RenderBody()
+    </main>
+    <script src="~/js/employeeModal.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        // JavaScript function to handle logout confirmation
+        function confirmLogout() {
+            // Display SweetAlert confirmation dialog
+            Swal.fire({
+                title: 'Logout',
+                text: "Are you sure you want to logout?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#65B741',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Redirect to the logout page or perform logout action
+                    window.location.href = "/User/Logout"; // Change the URL as per your logout action
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

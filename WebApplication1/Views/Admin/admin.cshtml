@@ -1,0 +1,113 @@
+﻿@{
+    Layout = "_AdminDashboard";
+}
+<body>
+    <div class="container">
+        <div class="tb1_container">
+            <h2>Manage Users</h2>
+            <table class="tb1">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Email</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>UserType</th>
+                        <th>Action</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var admin in Model)
+                    {
+                        <tr>
+                            <td>@admin.name</td>
+                            <td>@admin.position</td>
+                            <td>@admin.email</td>
+                            <td>@admin.username</td>
+                            <td>@admin.password</td>
+                            <td>@admin.UserType</td>
+                            <td>@admin.status</td>
+                            <td>
+                                <form id="approveForm_@admin.username" method="post" action="/Admin/AdminApproval">
+                                    <input type="hidden" name="action" value="Approved" />
+                                    <input type="hidden" name="username" value="@admin.username" />
+                                    <button type="button" onclick="approveAdmin('@admin.username')">Approve</button>
+                                </form>
+                            </td>
+                            <td>
+                                <form id="denyForm_@admin.username" method="post" action="/Admin/AdminApproval">
+                                    <input type="hidden" name="action" value="Deny" />
+                                    <input type="hidden" name="username" value="@admin.username" />
+                                    <button type="button" onclick="denyAdmin('@admin.username')">Deny</button>
+                                </form>
+                            </td>
+                            <td>
+                                <form id="deleteForm_@admin.username" method="post" action="/Admin/DeleteAdmin">
+                                    <input type="hidden" name="username" value="@admin.username" />
+                                    <button type="button" onclick="deleteAdmin('@admin.username')">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function deleteAdmin(username) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'Are you sure you want to delete this account?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#ffbb00',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Confirm',
+                cancelButtonText: 'Cancel',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById("deleteForm_" + username).submit();
+                }
+            });
+        }
+
+        function approveAdmin(username) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'Are you sure you want to approve this account?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#ffbb00',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Approve',
+                cancelButtonText: 'Cancel',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById("approveForm_" + username).submit();
+                }
+            });
+        }
+
+        function denyAdmin(username) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'Are you sure you want to deny this account?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#ffbb00',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Deny',
+                cancelButtonText: 'Cancel',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById("denyForm_" + username).submit();
+                }
+            });
+        }
+    </script>
+</body>

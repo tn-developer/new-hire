@@ -1,0 +1,1825 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+    outline: none;
+}
+
+:root {
+    --white-clr1: #faf9f6;
+    --white-clr2: #ffffff;
+    --white-clr3: #dfdfdf;
+    --white-clr4: #fdfbd5;
+    --white-clr5: #faf9f6;
+    --white-clr6: #eaeaea;
+    --yellow-primary: #ffbb00;
+    --yellow-secondary: #ffda76;
+    --gray-clr1: #363546;
+    --gray-clr2: #dcdcdc;
+    --gray-clr3: #bebebe;
+    --gray-clr4: #808080;
+    --black-clr1: #3b3c36;
+    --green-clr1: #03c04a;
+    --green-clr2: #00d084;
+    --blue-clr1: #0096ff;
+    --blue-clr2: #00bfff;
+    --red-clr1: #ff4040;
+    --red-clr2: #ff7f7f;
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--white-clr1);
+    /*display: flex;*/
+}
+
+/*Smooth Effect when going to another page*/
+
+/*Smooth Effect when going to another page*/
+
+/*Sidebar*/
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -240px;
+    height: 100dvh; /*min-height: 100%*/
+    width: 240px;
+    padding: 10px 14px;
+    background-color: var(--gray-clr1);
+    border-right: 2px solid var(--gray-clr2);
+    transition: all 480ms ease-in-out;
+    /* z-index: 999; */
+}
+
+    .sidebar .toggle-btn {
+        position: absolute;
+        top: 15px;
+        right: -40px;
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+        /* background-color: var(--yellow-primary);
+    border-radius: 3px; */
+    }
+
+        .sidebar .toggle-btn span {
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background: var(--black-clr1);
+            transform: translateY(-50%);
+            transition: all 300ms ease-in-out;
+            /* border-radius: 100px; */
+        }
+
+            .sidebar .toggle-btn span:nth-child(1) {
+                top: 10%;
+                border-radius: 15px;
+            }
+
+            .sidebar .toggle-btn span:nth-child(2) {
+                top: 50%;
+                border-radius: 15px;
+            }
+
+            .sidebar .toggle-btn span:nth-child(3) {
+                top: 90%;
+                border-radius: 15px;
+            }
+
+    .sidebar.active {
+        left: 0px;
+    }
+
+        .sidebar.active .toggle-btn span:nth-child(1) {
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+            border-radius: 15px;
+        }
+
+        .sidebar.active .toggle-btn span:nth-child(2) {
+            display: none;
+            border-radius: 15px;
+        }
+
+        .sidebar.active .toggle-btn span:nth-child(3) {
+            top: 50%;
+            transform: translateY(-50%) rotate(-45deg);
+            border-radius: 15px;
+        }
+
+    .sidebar .logo-image {
+        display: flex;
+        justify-content: center;
+        min-width: 50px;
+    }
+
+        .sidebar .logo-image img {
+            width: 200px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+    .sidebar .logo-name .logo-text {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--gray-clr1);
+        margin-left: 14px;
+    }
+
+    .sidebar .menu-items {
+        margin-top: 30px;
+        height: calc(100% - 100px);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+        .sidebar .menu-items li {
+            list-style: none;
+        }
+
+    .sidebar .menu-links li a {
+        margin-top: 7px;
+    }
+
+    .sidebar .menu-items li a {
+        display: flex;
+        align-items: center;
+        height: 50px;
+        text-decoration: none;
+    }
+
+        .sidebar .menu-items li a i {
+            font-size: 1rem;
+            width: 45px; /*max-width*/
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white-clr1);
+        }
+
+    .sidebar .menu-items .logout li a i,
+    .sidebar .menu-items .logout .link-name {
+        color: var(--gray-clr1);
+    }
+
+.dropdown a {
+    cursor: pointer;
+}
+
+.dropdown-links {
+    display: none;
+    border-radius: 8px;
+}
+
+.dropdown-transition {
+    display: block;
+}
+
+.dropdown-links li a {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--white-clr1);
+    padding-left: 44px;
+}
+
+    /* Targeting the specific icon within the dropdown links */
+    .dropdown-links li a i.fa-circle {
+        font-size: 0.5rem;
+        width: 20px;
+        margin-right: 8px;
+        color: var(--yellow-primary);
+    }
+
+    .dropdown-links li a:hover,
+    .dropdown-links li a.active {
+        color: var(--gray-clr1);
+    }
+
+    .dropdown-links li a:hover,
+    .dropdown-links li a.active {
+        background-color: var(--yellow-secondary) !important;
+    }
+
+.dropdown .fa-caret-down {
+    display: flex;
+    justify-content: flex-end; /* Move the caret icon to the end */
+    margin-left: auto; /* Ensures the caret icon is at the end even if there's extra space */
+}
+
+.sidebar .menu-items .logout {
+    background-color: var(--white-clr5);
+    border-radius: 8px;
+}
+
+.sidebar .menu-items li a .link-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--white-clr1);
+}
+
+.sidebar .menu-items li a:hover {
+    background-color: var(--yellow-primary);
+    border-radius: 8px;
+    transition: background-color 0.5s ease;
+}
+
+    .sidebar .menu-items li a:hover i,
+    .sidebar .menu-items li a:hover .link-name {
+        color: var(--gray-clr1);
+    }
+
+.sidebar .menu-items li a.active,
+.sidebar .menu-items li a:hover {
+    background-color: var(--yellow-primary);
+    border-radius: 8px;
+}
+
+    .sidebar .menu-items li a.active i,
+    .sidebar .menu-items li a.active .link-name,
+    .sidebar .menu-items li a:hover i,
+    .sidebar .menu-items li a:hover .link-name {
+        color: var(--gray-clr1);
+        border-radius: 8px;
+    }
+
+/*Automatic Dashboard Active*/
+.menu-items li a.active {
+    background-color: var(--yellow-primary);
+    border-radius: 8px;
+    transition: background-color 0.5s ease;
+}
+
+    .menu-items li a.active i,
+    .menu-items li a.active .link-name {
+        color: var(--gray-clr1);
+        border-radius: 8px;
+    }
+
+/*Sidebar*/
+
+/*Dashboard*/
+
+/*Dashboard Content*/
+.dash-board {
+    margin-left: 0; /* Initial width of sidebar */
+    /* transition: margin-left 0.3s ease; */
+    transition: all 500ms ease-in-out;
+    /* border: 3px solid red; */
+    height: 100dvh;
+    overflow-y: hidden;
+    background-color: var(--white-clr5);
+    /* border: 2px solid red; */
+    /*#ffffff*/
+}
+
+.sidebar.active ~ .dash-board {
+    margin-left: 240px;
+}
+
+.header {
+    margin: 10px 60px;
+}
+
+    .header p {
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--black-clr1);
+    }
+
+    .header h1 {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--black-clr1);
+    }
+
+.card-container {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 50px;
+    padding: 20px;
+    margin: 30px 0 0px 30px;
+}
+
+.card-for-checking,
+.card-for-approval,
+.card-approved-users,
+.card-denied-users {
+    background-color: var(--white-clr5);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 18px;
+    max-width: 300px;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .card-for-checking:hover,
+    .card-for-approval:hover,
+    .card-approved-users:hover,
+    .card-denied-users:hover {
+        transform: translateY(-5px); /* Lift the card on hover */
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add box shadow for depth */
+    }
+
+    .card-for-checking .fa-check,
+    h2 {
+        margin-bottom: 10px;
+    }
+
+    .card-for-approval .fa-thumbs-up,
+    h2 {
+        margin-bottom: 10px;
+    }
+
+    .card-approved-users .fa-thumbs-up,
+    h2 {
+        margin-bottom: 10px;
+    }
+
+    .card-denied-users .fa-thumbs-down,
+    h2 {
+        margin-bottom: 10px;
+    }
+
+    .card-for-checking h3,
+    .card-for-approval h3,
+    .card-approved-users h3,
+    .card-denied-users h3 {
+        margin-bottom: 20px;
+    }
+
+    .card-for-checking .fa-check,
+    .card-for-approval .fa-thumbs-up,
+    .card-approved-users .fa-thumbs-up,
+    .card-denied-users .fa-thumbs-down {
+        font-size: 2rem;
+        color: var(--white-clr1);
+        border-radius: 50%;
+        padding: 0.6rem;
+    }
+
+    .card-for-checking .fa-check {
+        background-color: var(--green-clr1);
+    }
+
+    .card-for-approval .fa-thumbs-up,
+    .card-approved-users .fa-thumbs-up {
+        background-color: var(--blue-clr1);
+    }
+
+    .card-denied-users .fa-thumbs-down {
+        background-color: var(--red-clr1);
+    }
+
+    .card-for-checking h2,
+    .card-for-approval h2,
+    .card-approved-users h2,
+    .card-denied-users h2 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--black-clr1);
+    }
+
+    .card-for-checking h3,
+    .card-for-approval h3,
+    .card-approved-users h3,
+    .card-denied-users h3 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: var(--black-clr1);
+    }
+
+    .card-for-checking a,
+    .card-for-approval a,
+    .card-approved-users a,
+    .card-denied-users a {
+        font-size: 1rem;
+        text-decoration: none;
+        font-weight: 500;
+        color: var(--black-clr1);
+    }
+
+        .card-for-checking a:hover,
+        .card-for-approval a:hover,
+        .card-approved-users a:hover,
+        .card-denied-users a:hover {
+            text-decoration: underline;
+        }
+
+/*Dashboard Content*/
+
+
+
+/*Add Employee Content*/
+.add-emp {
+    margin-left: 0;
+    transition: all 500ms ease-in-out;
+    height: 100dvh;
+    overflow-y: hidden;
+    background-color: var(--white-clr5);
+    /* border: 2px solid red; */
+    /* display: none; */
+    padding: 20px;
+}
+
+.sidebar.active ~ .add-emp {
+    margin-left: 240px; /* Adjusted width when sidebar is active */
+}
+
+.add-emp .add-emp-container {
+    width: 100%;
+    max-width: 650px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+    padding: 10px 0 20px 0;
+    /* padding: 20px 0; */
+    margin: auto;
+    margin-top: 70px;
+    /* border: 2px solid red; */
+    overflow-y: auto;
+}
+
+.add-emp .add-emp-header {
+    margin-top: 10px;
+    /* border: solid red 2px; */
+}
+
+    .add-emp .add-emp-header h1 {
+        padding-left: 40px;
+        font-size: 1.3em;
+        color: var(--black-clr1);
+    }
+
+    .add-emp .add-emp-header p {
+        padding: 10px 40px;
+        font-size: 0.9rem;
+    }
+
+.add-emp .add-emp-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px 40px;
+}
+
+.add-emp .user-input-box:nth-child(2n) {
+    justify-content: end;
+}
+
+.add-emp .user-input-box {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    padding-bottom: 18px;
+}
+
+    .add-emp .user-input-box input,
+    .add-emp select {
+        height: 45px;
+        width: 95%;
+        font-size: 0.9rem;
+        border-radius: 7px;
+        outline: none;
+        border: none;
+        background-color: #dfdfdf;
+    }
+
+    .add-emp .user-input-box input {
+        padding: 15px;
+    }
+
+    .add-emp .user-input-box select {
+        padding: 12px;
+        color: var(--gray-clr4);
+    }
+
+        .add-emp .user-input-box input:focus,
+        .add-emp .user-input-box select:focus {
+            outline: 2px solid #363546; /*#ffda76*/
+        }
+
+.add-emp .user-input-box {
+    position: relative;
+}
+
+.add-emp .add-emp-btn {
+    width: 100%;
+    margin-top: 10px;
+}
+
+    .add-emp .add-emp-btn input {
+        width: 100%;
+        height: 40px;
+        font-size: 1rem;
+        border-radius: 5px;
+        outline: none;
+        border: none;
+        background-color: #ffbb00;
+        color: #fdfbd5;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+        .add-emp .add-emp-btn input:hover {
+            background-color: var(--yellow-secondary);
+        }
+
+/*Place Holder*/
+.user-input-box {
+    position: relative;
+    display: inline-block;
+}
+
+input[type="date"] {
+    padding: 10px;
+}
+
+.date-placeholder {
+    position: absolute;
+    top: 40%;
+    left: 30px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: all 0.3s ease;
+    color: var(--gray-clr4);
+    font-size: 0.9rem;
+}
+
+input[type="date"]:focus + .date-placeholder {
+    opacity: 0;
+    visibility: hidden;
+}
+
+input[type="date"]:not(:focus) + .date-placeholder {
+    opacity: 1;
+    visibility: visible;
+}
+
+input[type="date"]::-webkit-datetime-edit {
+    color: transparent;
+}
+
+input[type="date"]:focus::-webkit-datetime-edit {
+    color: inherit;
+}
+
+input[type="date"]::-webkit-datetime-edit {
+    color: transparent;
+    transition: color 0.5s ease;
+}
+
+input[type="date"]:valid::-webkit-datetime-edit {
+    color: inherit;
+}
+
+input[type="date"]:focus::-webkit-datetime-edit {
+    color: inherit;
+}
+/*/
+  
+  /*Add Employee Content*/
+
+
+/*Task*/
+
+/*For Checking and For Approval*/
+.for-checking,
+.for-approval {
+    margin-left: 0;
+    transition: all 500ms ease-in-out;
+    height: 100dvh;
+    overflow: auto;
+    background-color: var(--white-clr5);
+    /* border: 2px solid red; */
+    /* display: none; */
+    padding: 20px;
+}
+
+.sidebar.active ~ .for-checking,
+.sidebar.active ~ .for-approval {
+    margin-left: 240px; /* Adjusted width when sidebar is active */
+}
+
+.for-checking .for-checking-container,
+.for-approval .for-approval-container {
+    width: 100%;
+    max-width: 1200px;
+    max-height: 400px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+    padding: 10px 0 20px 0;
+    /* padding: 20px 0; */
+    margin: auto;
+    /* margin: 0 10px; */
+    margin-top: 70px;
+    padding: 20px;
+    /* border: 2px solid red; */
+    border-collapse: collapse;
+    overflow: auto;
+    transition: all 500ms ease-in-out;
+}
+
+.sidebar:not(.active) ~ .for-checking .for-checking-container,
+.sidebar:not(.active) ~ .for-approval .for-approval-container {
+    max-width: 1500px;
+}
+
+.for-checking .for-checking-container .checking-container-content,
+.for-approval .for-approval-container .approval-container-content {
+    margin: 0 5px;
+    width: calc(100% - 10px);
+    overflow: auto;
+    /*TO ADD STICKY HEADER*/
+}
+
+    .for-checking .for-checking-container .checking-container-content h1,
+    .for-approval .for-approval-container .approval-container-content h1 {
+        font-size: 1.7rem;
+        color: var(--black-clr1);
+        text-align: start;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .for-checking .for-checking-container .checking-container-content table,
+    .for-approval .for-approval-container .approval-container-content table {
+        width: 100%;
+        /* border: 2px solid red; */
+        border-collapse: collapse;
+    }
+
+        /* ::-webkit-scrollbar {
+    width: 10px; 
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--gray-clr2);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--black-clr1); 
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--gray-clr3);
+  }  */
+
+        .for-checking .for-checking-container .checking-container-content table th,
+        .for-checking .for-checking-container .checking-container-content table td,
+        .for-approval .for-approval-container .approval-container-content table th,
+        .for-approval .for-approval-container .approval-container-content table td {
+            padding: 10px;
+            text-align: start;
+            border-bottom: 1px solid #ddd;
+            font-size: 0.9rem;
+        }
+            /* .for-checking .for-checking-container .checking-container-content table th,
+.for-approval .for-approval-container .approval-container-content table th {
+  /* height: 100px;
+  overflow: auto; *
+  padding: 13px;
+} */
+
+            /* Center-align the 4th to 6th columns */
+            .for-checking
+            .for-checking-container
+            .checking-container-content
+            table
+            th:nth-child(n + 2):nth-child(-n + 10),
+            .for-checking
+            .for-checking-container
+            .checking-container-content
+            table
+            td:nth-child(n + 2):nth-child(-n + 10),
+            .for-approval
+            .for-approval-container
+            .approval-container-content
+            table
+            th:nth-child(n + 2):nth-child(-n + 10),
+            .for-approval
+            .for-approval-container
+            .approval-container-content
+            table
+            td:nth-child(n + 2):nth-child(-n + 10) {
+                text-align: center;
+            }
+
+    /* Apply fixed width to the first column and prevent wrapping */
+    .for-checking .for-checking-container .checking-container-content table,
+    .for-approval .for-approval-container .approval-container-content table {
+        /* width: 250px;  */
+        white-space: nowrap; /* Prevent text wrapping */
+    }
+
+    /*Header Sticky*/
+    /* .for-checking .for-checking-container .checking-container-content table thead,
+.for-approval .for-approval-container .approval-container-content table thead {
+  position: sticky;
+  top: 0;
+  height: 50px;
+  z-index: 999;
+} */
+    /*Header Sticky*/
+
+    .for-checking .for-checking-container .checking-container-content th,
+    .for-approval .for-approval-container .approval-container-content th {
+        background: var(--yellow-primary);
+        color: var(--black-clr1);
+        font-weight: 700;
+        /* text-transform: uppercase; */
+    }
+
+    .for-checking
+    .for-checking-container
+    .checking-container-content
+    tbody
+    tr:nth-child(even),
+    .for-approval
+    .for-approval-container
+    .approval-container-content
+    tbody
+    tr:nth-child(even) {
+        background: var(--white-clr6);
+        transition: 0.2s ease;
+    }
+
+    .for-checking
+    .for-checking-container
+    .checking-container-content
+    tbody
+    tr:hover,
+    .for-approval
+    .for-approval-container
+    .approval-container-content
+    tbody
+    tr:hover {
+        background: var(--white-clr6);
+        /* transform: scale(1.01);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px; */
+    }
+
+    .for-checking
+    .for-checking-container
+    .checking-container-content
+    table
+    td
+    button {
+        width: 90px;
+    }
+
+    .for-checking
+    .for-checking-container
+    .checking-container-content
+    table
+    td
+    .btn-approve,
+    .btn-view,
+    .btn-edit,
+    .for-approval
+    .for-approval-container
+    .approval-container-content
+    table
+    td
+    .btn-approve,
+    .btn-deny,
+    .btn-view {
+        margin-right: 13px; /* Add margin-right to create space between buttons */
+    }
+
+    .for-checking .for-checking-container .checking-container-content .btn-view,
+    .for-approval .for-approval-container .approval-container-content .btn-view {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        border: 2px solid var(--gray-clr2);
+        outline: none;
+        cursor: pointer;
+        /* text-transform: uppercase; */
+        border-radius: 6px;
+        background-color: var(--blue-clr1);
+        color: var(--white-clr1);
+        font-weight: 700;
+    }
+
+        .for-checking
+        .for-checking-container
+        .checking-container-content
+        .btn-view:hover,
+        .for-approval
+        .for-approval-container
+        .approval-container-content
+        .btn-view:hover {
+            background-color: var(--blue-clr2);
+        }
+
+    .for-checking .for-checking-container .checking-container-content .btn-remarks {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        border: 2px solid var(--gray-clr4);
+        outline: none;
+        cursor: pointer;
+        /* text-transform: uppercase; */
+        border-radius: 6px;
+        background-color: var(--white-clr1);
+        color: var(--black-clr2);
+        font-weight: 700;
+    }
+
+        .for-checking
+        .for-checking-container
+        .checking-container-content
+        .btn-remarks:hover {
+            background-color: var(--gray-clr2);
+        }
+
+    .for-checking .for-checking-container .checking-container-content .btn-approve,
+    .for-approval .for-approval-container .approval-container-content .btn-approve {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        border: 2px solid var(--gray-clr2);
+        outline: none;
+        cursor: pointer;
+        /* text-transform: uppercase; */
+        border-radius: 6px;
+        background-color: var(--green-clr1);
+        color: var(--white-clr1);
+        font-weight: 700;
+    }
+
+        .for-checking
+        .for-checking-container
+        .checking-container-content
+        .btn-approve:hover,
+        .for-approval
+        .for-approval-container
+        .approval-container-content
+        .btn-approve:hover {
+            background-color: var(--green-clr2);
+        }
+
+    .for-checking .for-checking-container .checking-container-content .btn-edit {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        border: 2px solid var(--gray-clr2);
+        outline: none;
+        cursor: pointer;
+        /* text-transform: uppercase; */
+        border-radius: 6px;
+        background-color: var(--yellow-primary);
+        color: var(--white-clr2);
+        font-weight: 700;
+    }
+
+        .for-checking
+        .for-checking-container
+        .checking-container-content
+        .btn-edit:hover {
+            background-color: var(--yellow-secondary);
+        }
+
+/*Edit Button Modal*/
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    /* backdrop-filter: blur(1px); 
+    -webkit-backdrop-filter: blur(1px);  */
+}
+
+    .modal .edit-btn-modal-content {
+        background-color: #ffffff;
+        margin: 1.5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 30%;
+        min-width: 470px;
+        position: relative;
+        /* border: 2px solid red; */
+        border-radius: 7px;
+    }
+
+#edit-btn-modal-2, #edit-btn-modal-3 .edit-btn-modal-content {
+    margin: 10% auto;
+    min-width: 370px;
+}
+
+.modal .edit-btn-modal-content .edit-btn-modal-header {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+    .modal .edit-btn-modal-content .edit-btn-modal-header h1 {
+        font-size: 1.3em;
+        color: var(--black-clr1);
+    }
+
+.modal .edit-btn-modal-content .modal-close {
+    color: var(--black-clr1);
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+    .modal .edit-btn-modal-content .modal-close:hover,
+    .modal .edit-btn-modal-content .modal-close:focus {
+        color: var(--yellow-primary);
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+.modal .user-input-box {
+    width: 111%;
+}
+
+    .modal .user-input-box label {
+        display: block;
+        margin-bottom: 5px;
+        margin-left: 5px;
+        font-weight: 400;
+        font-size: 0.9rem;
+        /* border: 2px solid red; */
+    }
+
+    .modal .user-input-box input {
+        height: 45px;
+        width: 90%;
+        font-size: 0.9rem;
+        border-radius: 7px;
+        outline: none;
+        border: none;
+        background-color: #dfdfdf;
+        margin-bottom: 13px;
+    }
+
+    .modal .user-input-box input {
+        padding: 15px;
+    }
+
+.modal .password-toggle {
+    position: absolute;
+    top: 67%;
+    right: 30px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.modal .user-input-box input:focus {
+    outline: 2px solid #363546; /*#ffda76*/
+}
+
+.modal .edit-btn-modal-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 17px;
+    margin-top: 5px;
+    /* border: 2px solid red; */
+}
+
+    .modal .edit-btn-modal-buttons .edit-btn-approve,
+    .edit-btn-save,
+    .modal .edit-btn-modal-buttons .edit-btn-cancel {
+        width: 90px;
+    }
+
+    .modal .edit-btn-modal-buttons .edit-btn-approve,
+    .edit-btn-save {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        border: 2px solid var(--gray-clr2);
+        outline: none;
+        cursor: pointer;
+        /* text-transform: uppercase; */
+        border-radius: 6px;
+        background-color: var(--green-clr1);
+        color: var(--white-clr2);
+        font-weight: 700;
+    }
+
+        .modal .edit-btn-modal-buttons .edit-btn-approve:hover {
+            background-color: var(--green-clr2);
+        }
+
+    .modal .edit-btn-modal-buttons .edit-btn-cancel {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        border: 2px solid var(--gray-clr2);
+        outline: none;
+        cursor: pointer;
+        /* text-transform: uppercase; */
+        border-radius: 6px;
+        background-color: var(--red-clr1);
+        color: var(--white-clr2);
+        font-weight: 700;
+        /* margin-right: 4px; */
+    }
+
+        .modal .edit-btn-modal-buttons .edit-btn-cancel:hover {
+            background-color: var(--red-clr2);
+        }
+
+/*Edit Button Modal*/
+
+/* SweetAlert2 Styles */
+.swal2-popup {
+    font-size: 0.9rem !important;
+    font-family: "Montserrat", sans-serif !important;
+}
+
+/* Custom SweetAlert2 Button Styles */
+.swal2-styled.swal2-confirm {
+    background-color: var(--blue-clr1); /* Change to your desired color */
+    color: var;
+    /* border: none; */
+    /* padding: 10px 20px; */
+    /* font-size: 16px; */
+    /* border-radius: 3px; */
+}
+
+/* .swal2-styled.swal2-cancel {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+} */
+/**/
+
+/* .for-checking .for-checking-container {
+    width: 100%;
+    max-width: 750px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+    /* padding: 10px 0 20px 0; */
+/* padding: 20px 0; *
+    margin: auto;
+    margin-top: 70px;
+    /* border: 2px solid red; *
+    padding: 20px;
+    overflow-x: auto;
+  } */
+
+/* .for-checking .for-checking-container h1 {
+    text-align: center;
+    font-size: 1.3em;
+    color: #363546;
+    /* margin: 20px 0; *
+    margin-bottom: 15px;
+  } */
+
+/*For Checking View Button > View Employees Details TK*/
+.fc-view-emp-details,
+.fa-view-emp-details {
+    margin-left: 0;
+    transition: all 500ms ease-in-out;
+    height: 100dvh;
+    overflow-y: hidden;
+    background-color: var(--white-clr5);
+    /* border: 2px solid red; */
+    /* display: none; */
+    padding: 20px;
+}
+
+.sidebar.active ~ .fc-view-emp-details,
+.sidebar.active ~ .fa-view-emp-details {
+    margin-left: 240px;
+}
+
+/*Back Button*/
+.fc-view-emp-details .fc-btn-back-container,
+.fa-view-emp-details .fa-btn-back-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 40px 50px 0;
+}
+
+.fc-view-emp-details .fc-view-emp-det-btn-back,
+.fa-view-emp-details .fa-view-emp-det-btn-back {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    border: 2px solid var(--gray-clr2);
+    outline: none;
+    cursor: pointer;
+    border-radius: 20px;
+    background-color: var(--gray-clr1);
+    color: var(--white-clr2);
+    font-weight: 700;
+}
+
+    .fc-view-emp-details .fc-view-emp-det-btn-back i,
+    .fa-view-emp-details .fa-view-emp-det-btn-back i {
+        margin-right: 8px;
+    }
+/*Back Button*/
+
+.fc-view-emp-details .fc-view-emp-details-container,
+.fa-view-emp-details .fa-view-emp-details-container {
+    width: 100%;
+    max-width: 600px;
+    max-height: 400px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+    padding: 10px 0 20px 0;
+    margin: auto;
+    margin-top: 70px;
+    padding: 20px;
+    border-collapse: collapse;
+    overflow: auto;
+    transition: all 500ms ease-in-out;
+}
+
+    /* .sidebar:not(.active) ~ .fc-view-emp-details .fc-view-emp-details-container,
+.sidebar:not(.active) ~ .fa-view-emp-details .fa-view-emp-details-container{
+  max-width: 1500px;
+} */
+
+    .fc-view-emp-details
+    .fc-view-emp-details-container
+    .fc-view-emp-details-content,
+    .fa-view-emp-details
+    .fa-view-emp-details-container
+    .fa-view-emp-details-content {
+        margin: 0 5px;
+        width: calc(100% - 10px);
+        overflow: auto;
+    }
+
+        .fc-view-emp-details
+        .fc-view-emp-details-container
+        .fc-view-emp-details-content
+        .fc-header-view-emp-details,
+        .fa-view-emp-details
+        .fa-view-emp-details-container
+        .fa-view-emp-details-content
+        .fa-header-view-emp-details {
+            /* width: 100%; */
+
+            background-color: var(--yellow-primary);
+            border-radius: 3px;
+            padding: 8px;
+            margin-bottom: 8px;
+        }
+
+        .fc-view-emp-details
+        .fc-view-emp-details-container
+        .fc-view-emp-details-content
+        h1,
+        .fa-view-emp-details
+        .fa-view-emp-details-container
+        .fa-view-emp-details-content
+        h1 {
+            font-size: 1.7rem;
+            color: var(--black-clr1);
+            text-align: start;
+            /* margin-bottom: 10px; */
+            text-align: center;
+        }
+
+        .fc-view-emp-details
+        .fc-view-emp-details-container
+        .fc-view-emp-details-content
+        table,
+        .fa-view-emp-details
+        .fa-view-emp-details-container
+        .fa-view-emp-details-content
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+            .fc-view-emp-details
+            .fc-view-emp-details-container
+            .fc-view-emp-details-content
+            table
+            td,
+            .fa-view-emp-details
+            .fa-view-emp-details-container
+            .fa-view-emp-details-content
+            table
+            td {
+                height: 50px;
+            }
+
+            .fc-view-emp-details
+            .fc-view-emp-details-container
+            .fc-view-emp-details-content
+            table
+            th,
+            .fc-view-emp-details
+            .fc-view-emp-details-container
+            .fc-view-emp-details-content
+            table
+            td,
+            .fa-view-emp-details
+            .fa-view-emp-details-container
+            .fa-view-emp-details-content
+            table
+            th,
+            .fa-view-emp-details
+            .fa-view-emp-details-container
+            .fa-view-emp-details-content
+            table
+            td {
+                padding: 10px;
+                text-align: start;
+                border-bottom: 1px solid #ddd;
+                font-size: 0.9rem;
+            }
+
+            .fc-view-emp-details
+            .fc-view-emp-details-container
+            .fc-view-emp-details-content
+            table
+            th,
+            .fa-view-emp-details
+            .fa-view-emp-details-container
+            .fa-view-emp-details-content
+            table
+            th {
+                text-align: start;
+            }
+
+            .fc-view-emp-details
+            .fc-view-emp-details-container
+            .fc-view-emp-details-content
+            table
+            td,
+            .fa-view-emp-details
+            .fa-view-emp-details-container
+            .fa-view-emp-details-content
+            table
+            td {
+                text-align: end;
+            }
+
+        /* .fc-view-emp-details .fc-view-emp-details-container .fc-view-emp-details-content table,
+.fa-view-emp-details .fa-view-emp-details-container .fa-view-emp-details-content table{
+  white-space: nowrap;
+} */
+
+        /* .fc-view-emp-details .fc-view-emp-details-container .fc-view-emp-details-content table thead,
+.fa-view-emp-details .fa-view-emp-details-container .fa-view-emp-details-content table thead{
+  position: sticky;
+  top: 0;
+  height: 50px;
+  z-index: 999;
+} */
+
+        .fc-view-emp-details
+        .fc-view-emp-details-container
+        .fc-view-emp-details-content
+        th,
+        .fa-view-emp-details
+        .fa-view-emp-details-container
+        .fa-view-emp-details-content
+        th {
+            /* background: var(--yellow-primary); */
+            color: var(--black-clr1);
+            font-weight: 650;
+        }
+
+        .fc-view-emp-details
+        .fc-view-emp-details-container
+        .fc-view-emp-details-content
+        tbody
+        tr:nth-child(even),
+        .fa-view-emp-details
+        .fa-view-emp-details-container
+        .fa-view-emp-details-content
+        tbody
+        tr:nth-child(even) {
+            background: var(--white-clr6);
+            transition: 0.2s ease;
+        }
+
+        .fc-view-emp-details
+        .fc-view-emp-details-container
+        .fc-view-emp-details-content
+        tbody
+        tr:hover,
+        .fa-view-emp-details
+        .fa-view-emp-details-container
+        .fa-view-emp-details-content
+        tbody
+        tr:hover {
+            background: var(--white-clr6);
+        }
+
+/*For Checking View Button > View Employees Details TK*/
+
+/*For Checking and Approval*/
+
+/*For Approval*/
+
+.for-approval
+.for-approval-container
+.approval-container-content
+table
+td
+button {
+    width: 90px;
+}
+
+.for-approval .for-approval-container .approval-container-content .btn-deny {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    border: 2px solid var(--gray-clr2);
+    outline: none;
+    cursor: pointer;
+    /* text-transform: uppercase; */
+    border-radius: 6px;
+    background-color: var(--red-clr1);
+    color: var(--white-clr2);
+    font-weight: 700;
+}
+
+    .for-approval
+    .for-approval-container
+    .approval-container-content
+    .btn-deny:hover {
+        background-color: var(--red-clr2);
+    }
+
+.for-approval .for-approval-container .approval-container-content .btn-edit {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    border: 2px solid var(--gray-clr2);
+    outline: none;
+    cursor: pointer;
+    /* text-transform: uppercase; */
+    border-radius: 6px;
+    background-color: var(--yellow-primary);
+    color: var(--white-clr2);
+    font-weight: 700;
+}
+
+    .for-approval
+    .for-approval-container
+    .approval-container-content
+    .btn-edit:hover {
+        background-color: var(--yellow-secondary);
+    }
+
+/*For Approval*/
+
+/*Task*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Update Account Info*/
+.update-acc-info {
+    margin-left: 0;
+    transition: all 500ms ease-in-out;
+    height: 100dvh;
+    overflow-y: hidden;
+    background-color: var(--white-clr5);
+    /* border: 2px solid red; */
+    /* display: none; */
+    padding: 20px;
+}
+
+.sidebar.active ~ .update-acc-info {
+    margin-left: 240px;
+}
+
+.update-acc-info .update-acc-info-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 70px;
+}
+
+.update-acc-info .update-acc-info-content {
+    width: 100%;
+    max-width: 650px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+}
+
+.update-acc-info .update-acc-info-header {
+    width: 100%;
+    height: 10%;
+    margin-top: 20px;
+}
+
+    .update-acc-info .update-acc-info-header h1 {
+        text-align: start;
+        padding-left: 40px;
+        font-size: 1.3em;
+        color: #363546;
+    }
+
+    .update-acc-info .update-acc-info-header p {
+        padding: 10px 40px;
+        font-size: 0.9rem;
+    }
+
+.update-acc-info .update-acc-info-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px 30px 20px 30px;
+}
+
+    .update-acc-info .update-acc-info-form .user-input-box:nth-child(2n) {
+        justify-content: end;
+    }
+
+    .update-acc-info .update-acc-info-form .user-input-box {
+        display: flex;
+        flex-wrap: wrap;
+        width: 50%;
+        padding-bottom: 18px;
+    }
+
+        .update-acc-info .update-acc-info-form .user-input-box input {
+            height: 45px;
+            width: 97%;
+            font-size: 0.9rem;
+            border-radius: 7px;
+            outline: none;
+            border: none;
+            background-color: #dfdfdf;
+        }
+
+        .update-acc-info .update-acc-info-form .user-input-box input {
+            padding: 15px;
+        }
+
+            .update-acc-info .update-acc-info-form .user-input-box input:focus {
+                outline: 2px solid #363546; /*#ffda76*/
+            }
+
+    .update-acc-info .update-acc-info-form .user-input-box {
+        position: relative;
+    }
+
+    .update-acc-info .update-acc-info-form .password-toggle {
+        position: absolute;
+        top: 40%;
+        right: 15px;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+
+    .update-acc-info .update-acc-info-form .password-toggle2 {
+        position: absolute;
+        top: 40%;
+        right: 10px;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+
+    .update-acc-info .update-acc-info-form .update-acc-info-btn {
+        width: 50%;
+        min-width: 200px;
+        margin-top: 5px;
+        margin-inline: auto;
+        display: flex;
+        justify-content: space-evenly; /* To space buttons evenly */
+        align-items: center;
+        border-radius: 10px;
+    }
+
+    .update-acc-info .update-acc-info-form .update-acc-info-btn {
+        gap: 20px;
+    }
+
+        .update-acc-info .update-acc-info-form .update-acc-info-btn input {
+            flex: 2;
+            min-height: 40px;
+            min-width: 100px;
+            font-size: 0.9rem;
+            border-radius: 5px;
+            outline: none;
+            border: none;
+            background-color: #ffbb00;
+            color: #fdfbd5;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .update-acc-info .update-acc-info-form .update-acc-info-btn .btn-update {
+            background-color: var(--yellow-primary);
+        }
+
+            .update-acc-info .update-acc-info-form .update-acc-info-btn .btn-update:hover {
+                background-color: var(--yellow-secondary);
+            }
+
+        .update-acc-info .update-acc-info-form .update-acc-info-btn .btn-cancel {
+            background-color: var(--red-clr1);
+        }
+
+            .update-acc-info .update-acc-info-form .update-acc-info-btn .btn-cancel:hover {
+                background-color: var(--red-clr2);
+            }
+
+/*Update Account Info*/
+
+@media screen and (max-width: 760px) {
+    /* .sidebar.active{
+        left: -240px;
+      } */
+
+    /* .sidebar.active {
+        left: -240px;
+      } */
+    /* .dash-board{
+        left: -240px;
+      } */
+
+    /*Sidebar*/
+    .sidebar {
+        z-index: 9999;
+    }
+
+        .sidebar.active {
+            width: 240px; /* Cover the entire viewport width when active */
+            z-index: 9999;
+        }
+
+    /* .sidebar.active ~ .dash-board {
+        margin-left: 1000px; /* Ensure dashboard content stays in place *
+      } */
+
+    /*Dashboard*/
+    .dash-board {
+        margin-left: 0 !important;
+    }
+
+        .dash-board .card-container {
+            display: block;
+            margin: auto;
+        }
+
+        .dash-board .card-for-checking,
+        .dash-board .card-denied-users {
+            margin-top: 50px;
+        }
+
+    .card-for-checking.tk {
+        margin-top: 0px;
+    }
+    /*Dashboard*/
+
+    /*Add Employee*/
+    .add-emp {
+        margin-left: 0 !important;
+    }
+
+        .add-emp .add-emp-container {
+            min-width: 200px;
+        }
+
+        .add-emp .add-emp-header {
+            padding-right: 20px;
+        }
+
+        .add-emp .user-input-box {
+            display: block;
+            width: 100%;
+        }
+
+            .add-emp .user-input-box input {
+                width: 100%;
+            }
+
+    .user-input-box input,
+    .user-input-box select {
+        width: 100%;
+    }
+
+    .add-emp .date-placeholder {
+        left: 15px;
+    }
+    /*Add Employee*/
+
+    /*Task > For Checking*/
+    .for-checking,
+    .for-approval {
+        margin-left: 0 !important;
+    }
+    /* .for-checking-container thead {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        background-color: var(--white-clr1);
+      } */
+
+    /*Task > For Checking*/
+
+    /*Edit Button Modal*/
+    .modal .edit-btn-modal-content {
+        margin-top: 50px;
+        z-index: 99999999 !important;
+        min-width: 300px;
+    }
+
+    #edit-btn-modal-2, #edit-btn-modal-3 .edit-btn-modal-content {
+        margin-top: 130px;
+    }
+    /*Edit Button Modal*/
+
+    /*Site > Add Site*/
+    .add-site {
+        margin-left: 0 !important;
+        /* padding: 20px; */
+    }
+
+    .add-site-container {
+        min-width: 250px;
+    }
+
+    .add-site .user-input-box {
+        display: block;
+        width: 100%;
+        margin-bottom: 12px;
+    }
+
+        .add-site .user-input-box input,
+        .add-site select {
+            width: 100%;
+        }
+
+    .add-emp .add-emp-header {
+        margin-right: 10px;
+    }
+
+    .add-site .add-site-btn {
+        width: 100%;
+        margin-top: 5px;
+    }
+    /*Site > Add Site*/
+
+    /*Update Account Info*/
+    .update-acc-info {
+        margin-left: 0 !important;
+        /* padding: 20px; */
+    }
+
+        .update-acc-info .update-acc-info-container .update-acc-info-content {
+            min-width: 290px;
+        }
+
+            .update-acc-info
+            .update-acc-info-container
+            .update-acc-info-content
+            .update-acc-info-header {
+                padding-right: 20px;
+            }
+
+        .update-acc-info .update-acc-info-form .user-input-box {
+            display: block;
+            width: 100%;
+        }
+
+        .update-acc-info .update-acc-info-form .password-toggle {
+            margin-right: 15px;
+        }
+
+        .update-acc-info .update-acc-info-form .user-input-box input {
+            width: 100%;
+        }
+
+        .update-acc-info .update-acc-info-form {
+            padding: 0 25px;
+        }
+
+            .update-acc-info .update-acc-info-form .update-acc-info-btn {
+                padding-bottom: 20px;
+            }
+
+            /* .update-acc-info .update-acc-info-form .update-acc-info-btn{
+      margin-left: 0;
+    }
+    .update-acc-info .update-acc-info-form .update-acc-info-btn .btn-update{
+      margin-right: 13px;
+    } */
+
+            .update-acc-info .update-acc-info-form .update-acc-info-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+    /*Update Account Info*/
+
+    /*View Site*/
+    .view-site {
+        margin-left: 0 !important;
+        /* padding: 20px; */
+    }
+    /*View Site*/
+
+    /*Users*/
+    .users {
+        margin-left: 0 !important;
+        /* padding: 20px; */
+    }
+    /*Users*/
+
+    /*Approved Users*/
+    .approved-users {
+        margin-left: 0 !important;
+        /* padding: 20px; */
+    }
+    /*Approved Users*/
+
+    /*Denied Users*/
+    .denied-users {
+        margin-left: 0 !important;
+        /* padding: 20px; */
+    }
+    /*Denied Users*/
+
+    /*Approve List or List of Hires*/
+    .approve-list {
+        margin-left: 0 !important;
+        /* padding: 20px; */
+    }
+    /*Approve List or List of Hires*/
+}
+
+@media screen and (max-width: 576px) {
+    .dash-board .header {
+        margin-right: 0;
+    }
+
+        .dash-board .header span {
+            display: block;
+        }
+
+    .dash-board .card-container {
+        margin: 0 20px;
+        justify-content: center;
+    }
+
+    /*Task > For Checking*/
+    .for-checking .for-checking-container {
+        max-height: 550px;
+    }
+    /*Task > For Checking*/
+
+    /*Update Account Info*/
+    .update-acc-info .update-acc-info-content .update-acc-info-header p span {
+        display: block;
+        margin-top: 3px;
+    }
+
+    .update-acc-info .update-acc-info-form .password-toggle {
+        margin-right: 5px;
+    }
+    /*Update Account Info*/
+}

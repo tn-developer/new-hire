@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "_Accounting";
+}
+<body>
+    <h1>Add Site</h1>
+
+    <form action="/User/SaveSiteInfoToDatabaseIM" method="post">
+        <label for="siteName">Site Name:</label><br>
+        <input type="text" id="siteName" name="siteName" required><br><br>
+
+        <label for="clientName">Client Name:</label><br>
+        <input type="text" id="clientName" name="clientName" required><br><br>
+
+        <label for="om">OM:</label><br>
+        <select id="om" name="om">
+            @foreach (var om in ViewBag.OperationManagers)
+            {
+                <option value="@om">@om</option>
+            }
+        </select><br><br>
+
+        <button type="submit">Save</button>
+    </form>
+</body>

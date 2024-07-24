@@ -1,0 +1,77 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+.modal-content{
+    height:400px;
+    width:500px;
+}
+.modal-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    font-size:large;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.modal content {
+    margin-top:0;
+    margin-bottom:10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 50px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+    z-index: 9999;
+}
+.form-group input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+.modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+    .modal-footer button.btn-primary {
+        height:40px;
+        width:90px;
+        background-color: #dea301;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 10px; 
+    }
+
+    .modal-footer button.btn-secondary {
+        height: 40px;
+        width: 90px;
+        background-color: #dea301;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 20px
+    }
+
+
+    .modal-footer button.btn-primary:hover {
+        background-color: #65B741;
+    }
+
+    .modal-footer button.btn-secondary:hover {
+        background-color: #EF3A25;
+    }
+
