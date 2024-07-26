@@ -10,7 +10,19 @@ namespace WebApplication1.Controllers
     public class AdminController : Controller
     {
         private readonly string _connectionString;
+        //for session
+        const string SessionId = "_AdminID";
+        const string SessionName = "_AdminName";
+        const string SessionLayout = "_AdminLayout";
+        const string SessionTitle = "_AdminJob";
 
+        public void GetContext()
+        {
+            ViewBag.JobTitle = HttpContext.Session.GetString(SessionTitle);
+            ViewBag.Layout = HttpContext.Session.GetString(SessionLayout);
+            ViewBag.Name = HttpContext.Session.GetString(SessionName);
+            ViewBag.Id = HttpContext.Session.GetString(SessionId);
+        }
         public AdminController(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");

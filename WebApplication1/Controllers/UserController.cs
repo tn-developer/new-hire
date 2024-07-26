@@ -19,7 +19,17 @@ namespace WebApplication1.Controllers
     public class UserController : Controller
     {
         private readonly string _connectionString;
-
+        const string SessionId = "_AdminID";
+        const string SessionName = "_AdminName";
+        const string SessionLayout = "_AdminLayout";
+        const string SessionTitle = "_AdminJob";
+        public void GetContext()
+        {
+            ViewBag.JobTitle = HttpContext.Session.GetString(SessionTitle);
+            ViewBag.Layout = HttpContext.Session.GetString(SessionLayout);
+            ViewBag.Name = HttpContext.Session.GetString(SessionName);
+            ViewBag.Id = HttpContext.Session.GetString(SessionId);
+        }
         public UserController(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");
